@@ -16,7 +16,9 @@
 package com.example.android.kannada;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -36,7 +38,28 @@ public class MainActivity extends AppCompatActivity {
 
         // Set the content of the activity to use the activity_main.xml layout file
         setContentView(R.layout.activity_main);
-        startActivity(new Intent(this,IntroActivity.class));
+
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //Intialize shared preferences
+                SharedPreferences preferences =
+                        PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+                boolean isFirst = preferences.getBoolean("firstStart",true);
+
+                if(isFirst){
+                    startActivity(new Intent(MainActivity.this,IntroActivity.class));
+
+                    //Make a new preferences editor
+                    SharedPreferences.Editor e = preferences.edit();
+
+                    //edit preferences to false because we dont want to run it again
+                    e.putBoolean("firstStart",false);
+                    e.apply();
+                }
+            }
+        });
+        t.start();
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -96,55 +119,6 @@ public class MainActivity extends AppCompatActivity {
                 tabLayout.setBackgroundColor(getResources().getColor(R.color.primary_color));
             }
         });
-    /*
-        //Find the view that shows numbers activity
-        TextView numbers = (TextView) findViewById(R.id.numbers);
-        TextView family = (TextView) findViewById(R.id.family);
-        TextView colors = (TextView) findViewById(R.id.colors);
-        TextView phrases = (TextView) findViewById(R.id.phrases);
-
-        //set a ClickListener on that view
-        //View.OnClick() is an abstract method that needs to be defined by the user
-        /*
-         You can also do it this way
-         NumbersClickListener numbers = new NumbersClickListener();
-
-         where NumbersClickListener is a class that implements from View.OnClickListener
-
-        numbers.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent numbersActivity = new Intent(MainActivity.this,NumbersActivity.class); //Expliciy Intent
-                startActivity(numbersActivity);
-            }
-        });
-
-        family.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent familyActivity = new Intent(MainActivity.this,FamilyActivity.class);
-                startActivity(familyActivity);
-            }
-        });
-
-        colors.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent colorsActivity = new Intent(MainActivity.this,ColorsActivity.class);
-                startActivity(colorsActivity);
-            }
-        });
-
-        phrases.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent phrasesActivity = new Intent(MainActivity.this,PhrasesActivity.class);
-                startActivity(phrasesActivity);
-            }
-        });
-
-    */
-
 
     }
 
