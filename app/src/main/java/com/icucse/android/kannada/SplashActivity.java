@@ -1,4 +1,4 @@
-package com.example.android.kannada;
+package com.icucse.android.kannada;
 
 import android.content.Intent;
 import android.os.Handler;

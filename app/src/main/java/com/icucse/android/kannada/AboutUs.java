@@ -1,9 +1,11 @@
-package com.example.android.kannada;
+package com.icucse.android.kannada;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+
+import com.icucse.android.kannada.R;
 
 public class AboutUs extends AppCompatActivity {
 

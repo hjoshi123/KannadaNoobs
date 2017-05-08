@@ -1,4 +1,4 @@
-package com.example.android.kannada;
+package com.icucse.android.kannada;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;

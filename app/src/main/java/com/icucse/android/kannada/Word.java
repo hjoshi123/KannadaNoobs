@@ -1,4 +1,4 @@
-package com.example.android.kannada;
+package com.icucse.android.kannada;
 
 /**
  * Created by root on 3/1/17.

@@ -1,4 +1,4 @@
-package com.example.android.kannada;
+package com.icucse.android.kannada;
 
 
 import android.content.Context;
@@ -14,19 +14,16 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import static android.media.CamcorderProfile.get;
-
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FamilyFragment extends Fragment {
+public class ColorsFragment extends Fragment {
 
 
-    public FamilyFragment() {
+    public ColorsFragment() {
         // Required empty public constructor
     }
 
-    /** Handles playback of all the sound files */
     private MediaPlayer mMediaPlayer;
 
     /** Handles audio focus when playing a sound file */
@@ -63,8 +60,7 @@ public class FamilyFragment extends Fragment {
 
     /**
      * This listener gets triggered when the {@link MediaPlayer} has completed
-     * playing the audio file.
-     */
+     * playing the audio file. */
     private MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
         @Override
         public void onCompletion(MediaPlayer mediaPlayer) {
@@ -74,9 +70,11 @@ public class FamilyFragment extends Fragment {
     };
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View rootView = inflater.inflate(R.layout.words_list, container, false);
 
         // Create and setup the {@link AudioManager} to request audio focus
@@ -84,16 +82,16 @@ public class FamilyFragment extends Fragment {
 
         final ArrayList<Word> colorList = new ArrayList<>();
 
-        colorList.add(new Word("Father","Appa",R.drawable.family_father,R.raw.kannada_father));
-        colorList.add(new Word("Mother","Amma",R.drawable.family_mother,R.raw.kannada_mother));
-        colorList.add(new Word("Brother","Anna",R.drawable.family_older_brother,R.raw.kannada_brother));
-        colorList.add(new Word("Elder Sister","Akka",R.drawable.family_older_sister,R.raw.kannada_sister));
-        colorList.add(new Word("Younger Sister","Tangi",R.drawable.family_younger_sister,R.raw.kannada_sister));
-        colorList.add(new Word("Grandfather","Ajja",R.drawable.family_grandfather,R.raw.kannada_grandmother));
-        colorList.add(new Word("Grandmother","Ajji",R.drawable.family_grandmother,R.raw.kannada_grandfather));
-        colorList.add(new Word("Son","Magu",R.drawable.family_son,R.raw.kannada_child));
+        colorList.add(new Word("Red","Kempu",R.drawable.color_red,R.raw.kannada_red));
+        colorList.add(new Word("Green","Hasiru",R.drawable.color_green,R.raw.kannada_green));
+        //colorList.add(new Word("Blue","Neeli",R.drawable.blue,R.raw.kannada_blue));
+        colorList.add(new Word("Brown","Kandu",R.drawable.color_brown,R.raw.kannada_brown));
+        colorList.add(new Word("Black","Kappu",R.drawable.color_black,R.raw.kannada_black));
+        colorList.add(new Word("Grey","Tili",R.drawable.color_gray,R.raw.kannada_grey));
+        colorList.add(new Word("White","Bili",R.drawable.color_white,R.raw.kannada_white));
+        colorList.add(new Word("Yellow","Haladi",R.drawable.color_mustard_yellow,R.raw.kannada_yellow));
 
-        WordAdapter itemsAdapter = new WordAdapter(getActivity(),colorList,R.color.category_family);
+        WordAdapter itemsAdapter = new WordAdapter(getActivity(),colorList,R.color.category_colors);
 
         ListView listView = (ListView) rootView.findViewById(R.id.list);
 
@@ -103,28 +101,21 @@ public class FamilyFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Word word = colorList.get(i);
-                //release the MediaPlayer resources so that if user clicks on some other view while one is playing it directly jumps to other
+
                 releaseMediaPlayer();
+                mMediaPlayer = MediaPlayer.create(getActivity(),word.getAudioResourceId());
+                mMediaPlayer.start();
 
-                int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
-                        AudioManager.STREAM_MUSIC,AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
-
-                if(result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED){
-                    mMediaPlayer = MediaPlayer.create(getActivity(),word.getAudioResourceId());
-                    mMediaPlayer.start();
-
-                    mMediaPlayer.setOnCompletionListener(mCompletionListener);
-                }
+                mMediaPlayer.setOnCompletionListener(mCompletionListener);
 
                 //Toast.makeText(NumbersActivity.this,"Item Clicked",Toast.LENGTH_SHORT);
                 //Toast.LENGTH_SHORT is for time duration
             }
         });
 
-
         return rootView;
+    }
 
-}
     @Override
     public void onStop() {
         super.onStop();
@@ -154,6 +145,5 @@ public class FamilyFragment extends Fragment {
             mAudioManager.abandonAudioFocus(mOnAudioFocusChangeListener);
         }
     }
+
 }
-
-

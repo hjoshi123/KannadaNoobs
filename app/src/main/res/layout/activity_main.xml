@@ -21,7 +21,7 @@
     android:layout_height="match_parent"
     android:background="@color/tan_background"
     android:orientation="vertical"
-    tools:context="com.example.android.kannada.MainActivity">
+    tools:context=".MainActivity">
 
     <!--
     <TextView

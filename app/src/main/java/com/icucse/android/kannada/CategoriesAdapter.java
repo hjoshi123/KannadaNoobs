@@ -1,4 +1,4 @@
-package com.example.android.kannada;
+package com.icucse.android.kannada;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

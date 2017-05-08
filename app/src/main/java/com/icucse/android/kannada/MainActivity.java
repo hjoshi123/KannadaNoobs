@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.kannada;
+package com.icucse.android.kannada;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
