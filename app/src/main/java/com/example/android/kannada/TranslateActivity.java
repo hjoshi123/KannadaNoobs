@@ -1,10 +1,15 @@
 package com.example.android.kannada;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 public class TranslateActivity extends AppCompatActivity {
     private WebView webView;
@@ -16,13 +21,19 @@ public class TranslateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_translate);
 
-        webView = (WebView) findViewById(R.id.webview);
+        if(hasInternetConnection()){
+            webView = (WebView) findViewById(R.id.webview);
 
-        webView.setWebViewClient(new MyWebViewClient());
-        webView.loadUrl(url);
-        WebSettings webSettings = webView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-
+            webView.setWebViewClient(new MyWebViewClient());
+            webView.loadUrl(url);
+            WebSettings webSettings = webView.getSettings();
+            webSettings.setJavaScriptEnabled(true);
+        }
+        else{
+            Toast.makeText(getApplicationContext(),
+                    "Connection not established",Toast.LENGTH_SHORT).show();
+            finish();
+        }
 
     }
 
@@ -32,5 +43,12 @@ public class TranslateActivity extends AppCompatActivity {
             view.loadUrl(url);
             return true;
         }
+    }
+
+    private boolean hasInternetConnection(){
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo info = cm.getActiveNetworkInfo();
+
+        return info!=null && info.isConnected();
     }
 }

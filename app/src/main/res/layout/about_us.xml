@@ -55,12 +55,33 @@
         android:textAlignment="center"
         android:textStyle="bold"/>
 
-    <TextView
+    <RelativeLayout
+        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:text="Copyrights Hemant Joshi 2017"
-        android:textStyle="bold"
-        />
+        android:layout_height="0dp"
+        android:gravity="bottom">
+
+        <TextView
+            android:id="@+id/copyright"
+            android:gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="A CCL © Hemant Joshi 2017"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_below="@id/copyright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_gravity="bottom"
+            android:gravity="bottom"
+            android:text="Google Translate by Google Inc"/>
+
+    </RelativeLayout>
+
+
 
 </LinearLayout>
