@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 //Intialize shared preferences
                 SharedPreferences preferences =
                         PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+
                 boolean isFirst = preferences.getBoolean("firstStart",true);
 
                 if(isFirst){
@@ -116,7 +117,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-                tabLayout.setBackgroundColor(getResources().getColor(R.color.primary_color));
             }
         });
 

@@ -17,11 +17,11 @@ public class IntroActivity extends AppIntro2 {
 
         addSlide(AppIntroFragment.newInstance("Kannada for Noobs",
                 "Kannada in your fingertips",R.drawable.kannada_logo,
-                getResources().getColor(R.color.category_colors)));
+                Color.argb(1,200,120,20)));
 
         addSlide(AppIntroFragment.newInstance("Colours",
-                "Learn about basic colours",R.drawable.color_red,getResources()
-                .getColor(R.color.category_colors_toolbar)));
+                "Learn about basic colours",R.drawable.color_red,
+                Color.argb(1,210,130,35)));
 
         addSlide(AppIntroFragment.newInstance("Family",
                 "Learn about family members and many more things",
