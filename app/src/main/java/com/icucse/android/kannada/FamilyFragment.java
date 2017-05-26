@@ -89,8 +89,8 @@ public class FamilyFragment extends Fragment {
         colorList.add(new Word("Brother","Anna",R.drawable.family_older_brother,R.raw.kannada_brother));
         colorList.add(new Word("Elder Sister","Akka",R.drawable.family_older_sister,R.raw.kannada_sister));
         colorList.add(new Word("Younger Sister","Tangi",R.drawable.family_younger_sister,R.raw.kannada_sister));
-        colorList.add(new Word("Grandfather","Ajja",R.drawable.family_grandfather,R.raw.kannada_grandmother));
-        colorList.add(new Word("Grandmother","Ajji",R.drawable.family_grandmother,R.raw.kannada_grandfather));
+        colorList.add(new Word("Grandfather","Ajja",R.drawable.family_grandfather,R.raw.kannada_grandfather));
+        colorList.add(new Word("Grandmother","Ajji",R.drawable.family_grandmother,R.raw.kannada_grandmother));
         colorList.add(new Word("Son","Magu",R.drawable.family_son,R.raw.kannada_child));
 
         WordAdapter itemsAdapter = new WordAdapter(getActivity(),colorList,R.color.category_family);

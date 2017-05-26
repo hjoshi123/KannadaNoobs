@@ -31,6 +31,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
+    private boolean isFirstRun;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +47,9 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences preferences =
                         PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
-                boolean isFirst = preferences.getBoolean("firstStart",true);
+                isFirstRun = preferences.getBoolean("firstStart",true);
 
-                if(isFirst){
+                if(isFirstRun){
                     startActivity(new Intent(MainActivity.this,IntroActivity.class));
 
                     //Make a new preferences editor
